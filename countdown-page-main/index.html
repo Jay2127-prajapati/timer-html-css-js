@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown</title>
+    <link rel="stylesheet" href="./css/variables.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <main>
+      <div id="container">
+        <div id="timer-content">
+          <div id="countdown">
+            <h2 id="countdown-header">Let's Start Your Countdown...</h2>
+            <div id="timer">
+              <p id="timer-display">
+                <span class="time" id="days">00</span>:<span
+                  class="time"
+                  id="hours"
+                >00</span>:<span class="time" id="minutes">00</span>:<span
+                  class="time"
+                  id="seconds"
+                >00</span>
+              </p>
+            </div>
+          </div>
+          <div id="controls">
+            <button id="stop-continue" class="button">Stop</button>
+            <button id="reset" class="button">Reset</button>
+          </div>
+        </div>
+        <img id="top-image" src="./images/top-image.svg" alt="Top image" />
+        <div id="main-image">
+          <img id="rocket-image" src="./images/rocket.svg" alt="Rocket Image" />
+        </div>
+        <img
+          id="bottom-image"
+          src="./images/bottom-image.svg"
+          alt="Bottom image"
+        />
+      </div>
+
+      <div id="modal">
+        <form id="form">
+          <div id="close-button">
+            <button class="close-modal">X</button>
+          </div>
+          <div id="input-area">
+            <div id="username-area">
+              <label class="label" for="username">Nome:</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                required
+                autocomplete="off"
+              />
+            </div>
+            <div id="email-area">
+              <label class="label" for="email">E-mail:</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                autocomplete="off"
+              />
+            </div>
+          </div>
+        </form>
+
+        <div class="message" id="success-submit">
+          <h4>Enviado com sucesso!</h4>
+        </div>
+        <div class="message" id="error-submit">
+          <h4>Preencha todos os campos!</h4>
+        </div>
+      </div>
+    </main>
+
+    <script src="./js/main.js"></script>
+  </body>
+</html>

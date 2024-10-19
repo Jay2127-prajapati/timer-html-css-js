@@ -1,0 +1,309 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  position: relative;
+}
+
+/* CONTAINER */
+
+#container {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+
+  margin-right: 1rem;
+  margin-left: 1rem;
+
+  overflow: hidden;
+}
+
+/* IMAGE */
+
+#main-image {
+  width: 40%;
+}
+
+#main-image {
+  display: none;
+}
+
+#top-image,
+#bottom-image {
+  position: absolute;
+  max-width: 100%;
+
+  z-index: -1;
+}
+
+#top-image {
+  top: 0;
+  left: 0;
+}
+
+#bottom-image {
+  bottom: 0;
+  left: 0;
+}
+
+/* TIMER CONTENT */
+
+#timer-content {
+  text-align: center;
+}
+
+#timer-display {
+  width: 100%;
+}
+
+#timer-content #description p {
+  max-width: 80%;
+  margin: 2.875rem auto;
+
+  font-family: var(--main-font);
+}
+
+/* COUNTDOWN*/
+#countdown #countdown-header {
+  color: var(--purple);
+  text-transform: uppercase;
+
+  margin-bottom: 2.5rem;
+
+  font-family: var(--main-font);
+}
+
+/* TIMER */
+#timer {
+  color: var(--black);
+  font-size: 2.5rem;
+
+  font-family: var(--timer-font);
+}
+
+#timer span {
+  position: relative;
+}
+
+/*---*/
+
+#timer span.time::before {
+  content: '';
+  position: absolute;
+
+  font-size: 10px;
+  color: var(--light-gray);
+
+  top: -20px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  font-family: var(--timer-font);
+}
+
+#timer #days::before {
+  content: 'Days';
+}
+
+#timer #hours::before {
+  content: 'Hours';
+}
+
+#timer #minutes::before {
+  content: 'Minutes';
+}
+
+#timer #seconds::before {
+  content: 'Seconds';
+}
+
+/*---*/
+
+#timer #days {
+  margin-left: 0;
+}
+
+#timer #seconds {
+  margin-right: 0;
+}
+
+/* DESCRIPTION */
+#description p {
+  text-align: center;
+  color: var(--text-color);
+  font-size: 0.875rem;
+}
+
+/* BUTTON */
+.button {
+  display: block;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: var(--purple);
+  padding: 0.625rem;
+  border-radius: 10px;
+
+  width: 50%;
+  margin: 2.875rem auto 0 auto;
+
+  transition: 0.5s;
+
+  font-family: var(--main-font);
+}
+
+/* MODAL */
+#modal {
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+
+  top: 0;
+
+  height: 0;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: var(--main-font);
+
+  transition: 0.5s;
+
+  visibility: hidden;
+  opacity: 0;
+
+  overflow: hidden;
+}
+
+form {
+  background-color: var(--purple);
+
+  width: 300px;
+  min-width: 40%;
+
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 0px 10px #f8f8f8;
+
+  position: relative;
+}
+
+form .label {
+  margin-bottom: 4px;
+  display: block;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+form input {
+  margin-bottom: 30px;
+  padding: 0.7rem;
+  border-radius: 0 1rem 1rem 0;
+  border: none;
+  color: var(--black);
+
+  width: 100%;
+}
+
+form input[type='text'] {
+  text-transform: capitalize;
+}
+
+form #close-button {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+form #close-button button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: #f8f8f8;
+
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* active modal */
+#modal.active {
+  visibility: visible;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  height: 100vh;
+
+  transition: 0.5s;
+}
+
+/* MODAL BUTTON */
+#button-area button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: #f8f8f8;
+
+  cursor: pointer;
+
+  font-weight: 500;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  box-shadow: 0px 6px 0px #ccc;
+}
+
+#button-area button:active {
+  box-shadow: none;
+  transform: translateY(6px);
+}
+
+/* SUCCESS MESSAGE */
+.message {
+  position: absolute;
+  top: -20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+.message.success,
+.message.error {
+  top: 30px;
+
+  opacity: 1;
+  visibility: visible;
+
+  transition: 0.3s;
+}
+
+#success-submit {
+  color: var(--success-color);
+}
+
+/* ERROR MESSAGE */
+
+#error-submit {
+  color: var(--error-color);
+}
+
+/* Media Queries*/
+@media (min-width: 769px) {
+  #main-image {
+    margin-left: 4rem;
+    display: block;
+    width: 50%;
+  }
+
+  #main-image #rocket-image {
+    width: 100%;
+  }
+}
