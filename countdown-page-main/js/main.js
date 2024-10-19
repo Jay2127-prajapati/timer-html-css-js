@@ -11,32 +11,25 @@ let elapsedTime = parseInt(getCookie('elapsedTime'), 10) || 0; // Get elapsed ti
 
 // Function to update the timer
 const updateTimer = () => {
-  if (!paused) {
-    elapsedTime += 1000; // Increment elapsed time by 1 second
+  const days = String(Math.floor(elapsedTime / (1000 * 60 * 60 * 24))).padStart(2, '0');
+  const hours = String(Math.floor((elapsedTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+  const minutes = String(Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+  const seconds = String(Math.floor((elapsedTime % (1000 * 60)) / 1000)).padStart(2, '0');
 
-    const days = String(Math.floor(elapsedTime / (1000 * 60 * 60 * 24))).padStart(2, '0');
-    const hours = String(Math.floor((elapsedTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-    const minutes = String(Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-    const seconds = String(Math.floor((elapsedTime % (1000 * 60)) / 1000)).padStart(2, '0');
-
-    daysElement.innerText = days;
-    hoursElement.innerText = hours;
-    minutesElement.innerText = minutes;
-    secondsElement.innerText = seconds;
-
-    // Update elapsed time in cookies
-    setCookie('elapsedTime', elapsedTime, 365);
-  }
+  daysElement.innerText = days;
+  hoursElement.innerText = hours;
+  minutesElement.innerText = minutes;
+  secondsElement.innerText = seconds;
 };
 
-// Start the timer on load if it's not paused
-window.onload = () => {
-  updateTimer();
+// Function to start the timer
+const startTimer = () => {
   if (!paused) {
-    timerInterval = setInterval(updateTimer, 1000);
-    stopContinueButton.textContent = 'Stop';
-  } else {
-    stopContinueButton.textContent = 'Continue';
+    timerInterval = setInterval(() => {
+      elapsedTime += 1000;
+      updateTimer();
+      setCookie('elapsedTime', elapsedTime, 365); // Update elapsed time in cookies
+    }, 1000);
   }
 };
 
@@ -65,6 +58,17 @@ function getCookie(name) {
   return '';
 }
 
+// Start the timer or keep it paused on load
+window.onload = () => {
+  updateTimer();
+  if (!paused) {
+    startTimer();
+    stopContinueButton.textContent = 'Stop';
+  } else {
+    stopContinueButton.textContent = 'Continue';
+  }
+};
+
 // Event Listener for Stop/Continue Button
 stopContinueButton.addEventListener('click', () => {
   if (!paused) {
@@ -74,7 +78,7 @@ stopContinueButton.addEventListener('click', () => {
   } else {
     paused = false;
     stopContinueButton.textContent = 'Stop';
-    timerInterval = setInterval(updateTimer, 1000);
+    startTimer();
   }
   // Save paused state in cookies
   setCookie('paused', paused, 365);
@@ -89,7 +93,7 @@ resetButton.addEventListener('click', () => {
   setCookie('elapsedTime', elapsedTime, 365);
   setCookie('paused', paused, 365);
   updateTimer(); // Immediately update to show reset time
-  timerInterval = setInterval(updateTimer, 1000);
+  startTimer();
 });
 
 // Initialize timer display on page load
